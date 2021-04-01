@@ -13,10 +13,14 @@ var con = sql.createConnection({
 });
 
 app.use('/', require('./routes/test'))
-    con.connect(err => {
+con.connect(err => {
+    if (err) {
+        console.error(err)
+        return
+    }
     con.query('SELECT * FROM Post LIMIT 1', (err, results, fields) => {
         console.log(results)
     })
-    app.listen(port, ()=>console.log('App listening on port ' + port))
+    app.listen(port, () => console.log('App listening on port ' + port))
 })
 
