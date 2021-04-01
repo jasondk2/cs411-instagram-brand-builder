@@ -13,7 +13,7 @@ var con = sql.createConnection({
 });
 
 app.use('/', require('./routes/test'))
-con.connect(err => {
+    con.connect(err => {
     con.query('SELECT * FROM Post LIMIT 1', (err, results, fields) => {
         console.log(results)
     })
