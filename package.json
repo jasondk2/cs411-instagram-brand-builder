@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Jackcraig19/cs411-instagram-brand-builder#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
   }
 }
