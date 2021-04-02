@@ -1,26 +1,25 @@
 const express = require('express')
 const app = express()
 const sql = require('mysql')
+const handlebars = require('express-handlebars')
 require('dotenv').config()
 
 const port = process.env.PORT || '3000'
 
-var con = sql.createConnection({
-    host: process.env.DB_DOMAIN,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
-});
+// View Engine
+app.engine('hbs', handlebars({
+    layoutsDir: __dirname + '/views/layouts',
+    partialsDir: __dirname + '/views/partials/',
+    extname: '.hbs',
+    defaultLayout: 'index',
+}))
 
+app.set('view engine', 'hbs')
+
+// Routes
 app.use('/', require('./routes/test'))
-con.connect(err => {
-    if (err) {
-        console.error(err)
-        return
-    }
-    con.query('SELECT * FROM Post LIMIT 1', (err, results, fields) => {
-        console.log(results)
-    })
-    app.listen(port, () => console.log('App listening on port ' + port))
-})
+app.use('/posts', require('./routes/post'))
+
+app.listen(port, () => console.log('App listening on port ' + port))
+
 
