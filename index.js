@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
-const sql = require('mysql')
 const handlebars = require('express-handlebars')
 require('dotenv').config()
 
 const port = process.env.PORT || '3000'
+
+app.use(express.static(__dirname + '/public',{maxAge: '0'}))
 
 // View Engine
 app.engine('hbs', handlebars({
@@ -17,8 +18,9 @@ app.engine('hbs', handlebars({
 app.set('view engine', 'hbs')
 
 // Routes
-app.use('/', require('./routes/test'))
+app.use('/', require('./routes/home'))
 app.use('/posts', require('./routes/post'))
+app.use('*', require('./routes/404'))
 
 app.listen(port, () => console.log('App listening on port ' + port))
 

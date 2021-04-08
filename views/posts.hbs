@@ -1,27 +1,139 @@
-<link rel="stylesheet" type="text/css" href="/css/posts.css" />
 <main>
-    <h1>Posts CRUD Dashboard</h1>
-    <h4>Number of Posts: {{numPosts}}</h4>
-    <div class="block-container">
-        <div>
-            <form>
-                <h4>Create Post</h4>
-            </form>
+    <div class="main-crud-container">
+        <div class="data-container">
+            <h1>Posts CRUD Dashboard</h1>
+            <p><span class='data-value'>{{numPosts}}</span> posts in database.</p>
+            <p><span class='data-value'>{{avgLikes}}</span> average number of likes per post.</p>
+            {{#each errors}}
+            <p class="error-msg">{{this}}</p>
+            {{/each}}
         </div>
-        <div>
-            <form>
-                <h4>Get Post</h4>
-            </form>
-        </div>
-        <div>
-            <form>
-                <h4>Update Post</h4>
-            </form>
-        </div>
-        <div>
-            <form>
-                <h4>Delete Post</h4>
-            </form>
+        <div class="crud-container">
+            <div class="block-container">
+                <div>
+                    <form>
+                        <h4>Search Post</h4>
+                        <input style="display: none;" name="qt" value="search">
+                        <div class="label-group">
+                            <label>author username</label>
+                            <input name="usr" type="text" placeholder="kyliejenner">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" text="Search">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form>
+                        <h4>Create Post</h4>
+                        <input style="display: none;" name="qt" value="create">
+                        <div class="label-group">
+                            <label>post id</label>
+                            <input name="id" type="text" id="post-id" placeholder="GhbrQ">
+                        </div>
+                        <div class="label-group">
+                            <label>poster username</label>
+                            <input name="usr" type="text" id="post-usr" placeholder="@kyliejenner">
+                        </div>
+                        <div class="label-group">
+                            <label>num likes</label>
+                            <input name="likes" type="text" id="post-likes" placeholder="15">
+                        </div>
+                        <div class="label-group">
+                            <label>post date</label>
+                            <input name="date" type="text" id="post-date" placeholder="mm/dd/yyyy">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" id="create-submit" text="Create">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form>
+                        <h4>Update Post</h4>
+                        <input style="display: none;" name="qt" value="update">
+                        <div class="label-group">
+                            <label>Post Id To Update</label>
+                            <input name="idq" type="text" placeholder="GhbrQ">
+                        </div>
+                        <div class="label-group">
+                            <label>New Id</label>
+                            <input name="id" type="text" placeholder="GhbrW">
+                        </div>
+                        <div class="label-group">
+                            <label>New Author</label>
+                            <input name="author" type="text" placeholder="@kyliejenner">
+                        </div>
+                        <div class="label-group">
+                            <label>New Likes</label>
+                            <input name="likes" type="text" placeholder="125983">
+                        </div>
+                        <div class="label-group">
+                            <label>New Date Posted</label>
+                            <input name="date" type="text" placeholder="mm/dd/yyyy">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" text="Update">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form>
+                        <h4>Delete Post</h4>
+                        <input style="display: none;" name="qt" value="delete">
+                        <div class="label-group">
+                            <label>Post Id To Delete</label>
+                            <input name="idq" type="text" placeholder="GhbrQ">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" text="Delete">
+                        </div>
+                    </form>
+                </div>
+                 <div>
+                    <form>
+                        <h4>Get Above Average Users</h4>
+                        <input style="display: none;" name="qt" value="advanced">
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="block-container">
+                <h4>Viewing Window</h4>
+                <div class="results-window">
+                    <table id="results-window-table">
+                        <tr>
+                            <th>id</th>
+                            <th>author</th>
+                            <th>likes</th>
+                            <th>date</th>
+                        </tr>
+                        {{#each windowData}}
+                        <tr>
+                            <td>
+                                {{this.url}}
+                            </td>
+                            <td>
+                                {{this.username}}
+                            </td>
+                            <td>
+                                {{this.likes}}
+                            </td>
+                            <td>
+                                {{this.date_posted}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </main>
