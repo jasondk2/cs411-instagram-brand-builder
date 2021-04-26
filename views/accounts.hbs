@@ -1,0 +1,151 @@
+<main>
+    <div class="main-crud-container">
+        <div class="data-container">
+            <h1>Accounts CRUD Dashboard</h1>
+            <p><span class='data-value'>{{numPosts}}</span> Accounts in Database.</p>
+            {{#each errors}}
+            <p class="error-msg">{{this}}</p>
+            {{/each}}
+        </div>
+        <div class="crud-container">
+            <div class="block-container">
+                <div>
+                    <form>
+                        <h4>Search Account</h4>
+                        <input style="display: none;" name="qt" value="search">
+                        <div class="label-group">
+                            <label>Account Username</label>
+                            <input name="usr" type="text" placeholder="beyonce">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" text="Search">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form>
+                        <h4>Create Account</h4>
+                        <input style="display: none;" name="qt" value="create">
+                        <div class="label-group">
+                            <label>username</label>
+                            <input name="username" type="text" id="account-username" placeholder="@beyonce">
+                        </div>
+                        <div class="label-group">
+                            <label>name</label>
+                            <input name="name" type="text" id="account-name" placeholder="John Doe">
+                        </div>
+                        <div class="label-group">
+                            <label>password</label>
+                            <input name="password" type="text" id="account-password" placeholder="abc123">
+                        </div>
+                        <div class="label-group">
+                            <label>currentFollowerCount</label>
+                            <input name="currFollowerCt" type="text" id="account-currFollowerCt" placeholder="0">
+                        </div>
+                        <div class="label-group">
+                            <label>currentFollowingCount</label>
+                            <input name="currFollowingCt" type="text" id="account-currFollowingCt" placeholder="0">
+                        </div>
+                        <div class="label-group">
+                            <label>numberOfPosts</label>
+                            <input name="numPosts" type="text" id="account-numPosts" placeholder="0">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" id="create-submit" text="Create">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form>
+                        <h4>Update Account Password</h4>
+                        <input style="display: none;" name="qt" value="update">
+                        <div class="label-group">
+                            <label>Username to Update</label>
+                            <input name="username" type="text" placeholder="@beyonce">
+                        </div>
+                        <div class="label-group">
+                            <label>New Password</label>
+                            <input name="password" type="text" placeholder="abc123">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" text="Update">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <form>
+                        <h4>Delete Account</h4>
+                        <input style="display: none;" name="qt" value="delete">
+                        <div class="label-group">
+                            <label>Post Id To Delete</label>
+                            <input name="username" type="text" placeholder="@beyonce">
+                        </div>
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit" text="Delete">
+                        </div>
+                    </form>
+                </div>
+                 <div>
+                    <form>
+                        <h4>Display Users with a Follower/Following Ratio Greater Than 15</h4>
+                        <input style="display: none;" name="qt" value="advanced">
+                        <div class="label-group">
+                            <label>Submit</label>
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="block-container">
+                <h4>Viewing Window</h4>
+                <div class="results-window">
+                    <table id="results-window-table">
+                        <tr>
+                            <th>username</th>
+                            <th>name</th>
+                            <th>password</th>
+                        </tr>
+                        {{#each windowData}}
+                        <tr>
+                            <td>
+                                {{this.username}}
+                            </td>
+                            <td>
+                                {{this.name}}
+                            </td>
+                            <td>
+                                {{this.password}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+            <div class="block-container">
+                <h4>Usernames with Follower/Following Ratios > 15</h4>
+                <div class="results-window">
+                    <table id="results-window-table">
+                        <tr>
+                            <th>Username</th>
+                            <th>Ratio</th>
+                        </tr>
+                        {{#each windowData}}
+                        <tr>
+                            <td>
+                                {{this.username}}
+                            </td>
+                            <td>
+                                {{this.ratio}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
